@@ -85,3 +85,55 @@ The pairing of **Lightdash dataset** with **SQLite** enables the project to demo
 - Lightdash. (n.d.). *Lightdash Demo Training Dataset*. GitHub. https://github.com/lightdash/lightdash-demo-training
 - SQLite Consortium. (2024). *SQLite Documentation*. https://www.sqlite.org/docs.html
 - Python Software Foundation. (2024). *sqlite3 — DB-API 2.0 interface for SQLite databases*. https://docs.python.org/3/library/sqlite3.html
+
+Here's a simple README in English explaining what each file contains:
+
+---
+
+# CRM Assistant - Demo Files
+
+## File Structure
+
+### `index.html`
+Main HTML structure of the page. Contains the sidebar, main content area, and chat interface. Links to all CSS and JavaScript files.
+
+### `style.css`
+Custom styles for animations and UI elements. Includes:
+- Message slide-in animations
+- Typing indicator dots
+- Scrollbar hiding utilities
+
+### `app.js`
+CRM logic and functionality. Contains:
+- Mock data (deals, accounts, targets)
+- Dashboard rendering
+- Charts (using Chart.js)
+- CRUD operations for deals
+- Section navigation (Dashboard, Deals, Accounts, Targets)
+
+### `chatbot.js`
+Chatbot simulation logic. Contains:
+- Message display functions
+- Mock AI responses (based on keywords)
+- Quick question buttons
+- Typing indicator animation
+
+**Note:** This file is meant to be replaced with real chatbot API integration.
+
+---
+
+## Quick Start
+
+1. Place all files in the same folder
+2. Open `index.html` in a browser
+3. Everything works with sample data
+
+---
+
+## For Developers
+
+- To replace the chatbot: Edit `chatbot.js`
+- To connect a database: Modify the `DataService` object in `app.js`
+- To change styling: Edit `style.css`
+
+---
