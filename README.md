@@ -1,3 +1,8 @@
+# AI-Powered CRM Assistant； Data Gap Bridge
+## 1. Graphical Abstract
+![Project Overview]
+
+## 2. Project Demonstration (Demo) 
 ## 📊 Data Source & Database Management System Justification
 
 ### 1. Lightdash Dataset Selection
@@ -85,3 +90,60 @@ The pairing of **Lightdash dataset** with **SQLite** enables the project to demo
 - Lightdash. (n.d.). *Lightdash Demo Training Dataset*. GitHub. https://github.com/lightdash/lightdash-demo-training
 - SQLite Consortium. (2024). *SQLite Documentation*. https://www.sqlite.org/docs.html
 - Python Software Foundation. (2024). *sqlite3 — DB-API 2.0 interface for SQLite databases*. https://docs.python.org/3/library/sqlite3.html
+
+---
+
+## 3. Purpose of the Software
+### 3.1 Problem Statement
+Traditional CRM systems are often complex and restricted to specialized users, creating operational bottlenecks. Our AI-Powered CRM Assistant enables non-technical stakeholders to access strategic information through simple conversational queries.
+
+### 3.2 Software Development Process
+**Model:** **Agile Development**
+**Reasoning:** Agile allows our team to work in parallel on the chatbot logic, frontend, and database design. [cite_start]It supports iterative testing, which is crucial for refining AI prompt accuracy
+**Target Market:** Small to medium enterprises (SMEs) and multi-departmental companies seeking higher data visibility
+### 3.3 Target Market & Market Analysis
+
+#### A. Target Audience
+Our primary target market includes **Small to Medium Enterprises (SMEs)** and non-technical departments within larger organizations (e.g., Marketing, HR, and Executive Leadership) that lack dedicated data analysts.
+
+#### B. Market Pain Points (The "Expert Bottleneck")
+Currently, CRM data is often "locked" behind complex UI menus or requires technical expertise to query. This creates a dependency on CRM experts, leading to decision-making delays.
+
+#### C. Our Solution's Positioning
+Our AI-Powered Assistant fills the gap between **Complex Data Storage** and **Strategic Decision Making** by providing:
+* **Zero Learning Curve:** No need to learn complex CRM navigation.
+* **Instant Insights:** Get sales summaries or customer lists in seconds via chat.
+* **Cross-Departmental Visibility:** Empowers every team member with data-driven insights.
+
+---
+
+## 4. Software Development Plan
+### 4.1 Team Members & Responsibilities
+| Member | Primary Roles | Key Responsibilities |
+| :--- | :--- | :--- |
+| **Lucas** | Chatbot Developer | Developing AI logic; Connecting chatbot to the DBMS. |
+| **Gustavo** | Frontend Developer | Web development and UI/UX implementation. |
+| **Anna** | DB Designer / Reviewer | Sourcing datasets; Database schema design; Documentation review. |
+| **Eddie** | Documentation Lead | README.md drafting; Project report management. |
+
+### 4.2 Project Schedule
+* **Week 1:** Requirement analysis and database setup (DBMS commitment).
+* **Week 2:** Parallel development of Chatbot logic and Web Frontend.
+* **Week 2.5:** System integration and "Analysis Capabilities" testing phase.
+* **Week 3:** Final demo recording and documentation polishing.
+
+### 4.3 Algorithm & Implementation
+* **Data Handling:** We utilize the **Lightdash Demo Training** dataset.
+* **Prompt Logic:** To handle historical data limitations in the demo, the AI is anchored to a specific virtual date (e.g., `2021.01.01`). This ensures relative queries like "last month" yield accurate results from the 2020 dataset.
+
+### 4.4 Current Status & Future Plan
+**Current Status:** **Pilot Level**. Functional CRUD operations and AI query parsing.
+**Future Plan:** Integration of live enterprise datasets and real-time system clock synchronization to replace the anchored prompt logic.
+
+---
+
+## 5. Development & Running Environments
+
+---
+
+## 6. Declaration
