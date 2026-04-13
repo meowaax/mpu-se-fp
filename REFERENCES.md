@@ -18,9 +18,9 @@ This project uses or depends on the following technologies and services:
    Reitz, K., et al. (2024). *Requests: HTTP for Humans*.  
    https://requests.readthedocs.io/
 
-5. **PostgreSQL**  
-   PostgreSQL Global Development Group. (2024). *PostgreSQL Documentation*.  
-   https://www.postgresql.org/docs/
+5. **SQLite**  
+   SQLite Development Team. (2024). *SQLite Documentation*.  
+   [https://sqlite.org/](https://sqlite.org/)
 
 6. **Chart.js**  
    Chart.js Contributors. (2024). *Chart.js Documentation*.  
@@ -37,6 +37,14 @@ This project uses or depends on the following technologies and services:
 9. **Qwen / DashScope Compatible API**  
    Alibaba Cloud. (2024). *DashScope Compatible-Mode API Documentation*.  
    https://help.aliyun.com/
+
+10. **Pandas**  
+   pandas Development Team. (2024). *pandas Documentation*.  
+   [https://pandas.pydata.org/](https://pandas.pydata.org/)
+
+11. **Black**  
+   Black Development Team. (2024). *Black - The Uncompromising Code Formatter*.  
+   [https://black.readthedocs.io/](https://black.readthedocs.io/)
 
 ## Acknowledgement
 
