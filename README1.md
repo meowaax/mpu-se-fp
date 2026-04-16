@@ -54,8 +54,7 @@ Traditional CRM systems are often complex and restricted to specialized users, c
 * **Prompt Logic:** To handle historical data limitations in the demo, the AI is anchored to a specific virtual date (e.g., `2021.01.01`). This ensures relative queries like "last month" yield accurate results from the 2020 dataset.
 
 ### 4.4 Current Status & Future Plan
-
-* **Current Status:** **Pilot Level**[cite: 32]. Functional CRUD operations and AI query parsing.
+* **Current Status:** **Pilot Level**. Functional CRUD operations and AI query parsing.
 * **Future Plan:** Integration of live enterprise datasets and real-time system clock synchronization to replace the anchored prompt logic.
 
 ---
