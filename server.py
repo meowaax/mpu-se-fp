@@ -98,13 +98,26 @@ def generate_sql_query(user_message, schema, sample_data):
     if not api_key:
         return None, "API key not configured"
     
+    # Virtual anchor date for consistent relative time queries
+    VIRTUAL_ANCHOR_DATE = "2023-12-31"
+    VIRTUAL_ANCHOR_YEAR = "2023"
+    VIRTUAL_ANCHOR_MONTH = "12"
+    
     system_prompt = f"""You are a SQL expert. Convert the user's natural language question into a SQL query for a SQLite database.
+
+**IMPORTANT DATE CONTEXT:**
+- The current virtual date is {VIRTUAL_ANCHOR_DATE} 
+- All date-related queries should be interpreted relative to this virtual anchor date
+- For "last month" queries, refer to November 2023
+- For "this year" queries, refer to 2023
+- For "last year" queries, refer to 2022
 
 Database Schema:
 {json.dumps(schema, indent=2)}
 
 Sample Data from Tables:
 {json.dumps(sample_data, indent=2)}
+
 
 Rules:
 1. Return ONLY the SQL query, no explanation or additional text
@@ -116,6 +129,15 @@ Rules:
 7. Limit results to 100 rows max unless specified
 8. If the question is ambiguous, make reasonable assumptions
 9. Join tables when necessary using foreign keys (account_id, etc.)
+10. For date comparisons, use SQLite date functions (strftime, date, etc.)
+11. When users ask about "last month", "last quarter", or "last year", calculate based on {VIRTUAL_ANCHOR_DATE}
+
+Date calculation examples (based on virtual date {VIRTUAL_ANCHOR_DATE}):
+- "last month" -> strftime('%Y-%m', date_column) = '2023-11'
+- "this year" -> strftime('%Y', date_column) = '{VIRTUAL_ANCHOR_YEAR}'
+- "last year" -> strftime('%Y', date_column) = '2022'
+- "year to date" -> dates from {VIRTUAL_ANCHOR_YEAR}-01-01 to {VIRTUAL_ANCHOR_DATE}
+- "previous month" -> November 2023
 
 Examples based on typical CRM tables:
 - "Show me all deals" -> "SELECT * FROM deals LIMIT 50"
@@ -123,6 +145,9 @@ Examples based on typical CRM tables:
 - "List accounts with their deal count" -> "SELECT a.account_name, COUNT(d.deal_id) as deal_count FROM accounts a LEFT JOIN deals d ON a.account_id = d.account_id GROUP BY a.account_id"
 - "Show me won deals" -> "SELECT * FROM deals WHERE stage LIKE '%Won%'"
 - "What's the average deal amount?" -> "SELECT AVG(amount) as average_amount FROM deals"
+- "Deals from last month" -> "SELECT * FROM deals WHERE strftime('%Y-%m', created_date) = '2023-11'"
+- "Total sales this year" -> "SELECT SUM(amount) FROM deals WHERE strftime('%Y', created_date) = '{VIRTUAL_ANCHOR_YEAR}'"
+- "Compare this year vs last year" -> "SELECT strftime('%Y', created_date) as year, SUM(amount) as total FROM deals WHERE strftime('%Y', created_date) IN ('{VIRTUAL_ANCHOR_YEAR}', '2022') GROUP BY year"
 
 User question: {user_message}
 
@@ -168,12 +193,20 @@ def format_response_as_human_language(query_result, user_message):
     api_key = os.getenv('QWEN_API_KEY')
     model = os.getenv('QWEN_MODEL', 'qwen-plus')
     
+    VIRTUAL_ANCHOR_DATE = "December 31, 2023"
+    
     if not api_key or not query_result.get('success'):
         if not query_result.get('success'):
             return f"Error: {query_result.get('error', 'Unknown error')}"
         return format_results_simple(query_result['data'], user_message)
     
     system_prompt = """You are a helpful CRM assistant. Convert the database query results into a natural, conversational response.
+
+*IMPORTANT CONTEXT:**
+- The current virtual date is {VIRTUAL_ANCHOR_DATE}
+- All dates in the response should be interpreted relative to this anchor
+- When referencing time periods (like "last month"), make it clear you're referring to the period relative to {VIRTUAL_ANCHOR_DATE}
+
 Rules:
 - Be concise but informative
 - Use proper formatting for numbers (commas, currency symbols)
@@ -183,7 +216,7 @@ Rules:
 
     messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": f"User asked: '{user_message}'\n\nDatabase results: {json.dumps(query_result['data'][:20])}\nTotal rows: {query_result['row_count']}\n\nRespond naturally:"}
+        {"role": "user", "content": f"User asked: '{user_message}'\n\nDatabase results: {json.dumps(query_result['data'][:20])}\nTotal rows: {query_result['row_count']}\n\nRespond naturally, keeping in mind the virtual date is {VIRTUAL_ANCHOR_DATE}:"}
     ]
     
     headers = {

@@ -1,4 +1,8 @@
-# Qwen CRM Assistant
+# Qwen CRM Assistant: Bridging the Data Gap
+
+## 1. Graphical Abstract
+<img width="1920" height="1080" alt="38494f925984eb9773c29858c9cbf39f" src="https://github.com/user-attachments/assets/5de6f1f9-acf9-445d-90ff-6f4c1e5dac27" />
+
 
 An AI-powered CRM dashboard built with **Flask**, **SQLite**, and **Qwen API**.  
 This project combines a comprehensive sales dashboard with an intelligent chatbot assistant that can answer questions about CRM data such as deals, accounts, pipeline stages, and quarterly targets.
@@ -12,7 +16,50 @@ This project combines a comprehensive sales dashboard with an intelligent chatbo
 - 🔧 **Automated Setup** – One-click `.bat` installer for Windows (installs all dependencies automatically)
 - 🐍 **Flask Backend** – RESTful API with proper error handling and fallbacks
 - 🔒 **Environment Configuration** – Secure API key management via `.env` file
+---
 
+## 2. Project Demonstration (Demo)
+
+---
+
+## 3. Purpose of the Software
+### 3.1 Problem Statement
+Traditional CRM systems are often complex and restricted to specialized users, creating operational bottlenecks. Our AI-Powered CRM Assistant enables non-technical stakeholders to access strategic information through simple conversational queries.
+
+### 3.2 Software Development Process
+* **Model:** **Agile Development**.
+* **Reasoning:** Agile allows our team to work in parallel on the chatbot logic, frontend, and database design.It supports iterative testing, which is crucial for refining AI prompt accuracy.
+* **Target Market:** Small to medium enterprises (SMEs) and multi-departmental companies seeking higher data visibility.
+
+---
+
+## 4. Software Development Plan
+### 4.1 Team Members & Responsibilities (R&R)
+
+| Member | Primary Roles | Key Responsibilities |
+| :--- | :--- | :--- |
+| **Lucas** | Chatbot Developer | Developing AI logic; Connecting chatbot to the DBMS. |
+| **Gustavo** | Frontend Developer | Web development and UI/UX implementation. |
+| **Anna** | DB Designer / Reviewer | Sourcing datasets; Database schema design; Documentation review. |
+| **Eddie** | Documentation Lead | README.md drafting; Project report management. |
+
+### 4.2 Project Schedule
+**Week 1:** Requirement analysis and database setup (DBMS commitment).
+* **Week 1-2:** Parallel development of Chatbot logic and Web Frontend.
+* **Week 3-4:** System integration and "Analysis Capabilities" testing phase.
+* **Week 4:** Final demo recording and documentation polishing.
+
+### 4.3 Algorithm & Implementation
+* **Data Handling:** We utilize the **Lightdash Demo Training** dataset.
+* **Prompt Logic:** To handle historical data limitations in the demo, the AI is anchored to a specific virtual date (e.g., `2023.12.31`). This ensures relative queries like "last month" yield accurate results from the 2020 dataset.
+
+### 4.4 Current Status & Future Plan
+* **Current Status:** **Pilot Level**. Functional CRUD operations and AI query parsing.
+* **Future Plan:** Integration of live enterprise datasets and real-time system clock synchronization to replace the anchored prompt logic.
+
+---
+
+## 5. Development & Running Environments
 ## 📁 Project Structure
 
 ```text
@@ -218,14 +265,16 @@ black server.py db/*.py
 
 We recommend [DB Browser for SQLite](https://sqlitebrowser.org/) for visual database exploration.
 
-## 📝 Notes for GitHub
 
-- Never commit your real `.env` file
-- The `.gitignore` file excludes `.env`, `venv/`, and `__pycache__/`
-- Only upload `.env.example` as a template
-- If you accidentally expose an API key, regenerate it immediately
 
-## 🚧 Limitations
+---
+
+## 6. Declaration
+* **Open Source:** We utilize the `lightdash-demo-training` dataset.
+* **AI API:** Natural language parsing is assisted by [Specify API, e.g., OpenAI API].
+*All other core integration and CRM logic were developed by the team.
+
+## 🚧 Limitation
 
 - Qwen API requires an active internet connection and valid API key
 - The free tier of Qwen API has rate limits (check your quota)
