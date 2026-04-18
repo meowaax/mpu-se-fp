@@ -20,6 +20,8 @@ This project combines a comprehensive sales dashboard with an intelligent chatbo
 
 ## 2. Project Demonstration (Demo)
 
+Video available on Youtube: [Click here](https://youtu.be/jnf9_QIUuQo)
+
 ---
 
 ## 3. Purpose of the Software
